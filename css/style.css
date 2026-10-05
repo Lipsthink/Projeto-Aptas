@@ -1,0 +1,479 @@
+/* =========================
+   DESIGN SYSTEM
+   ========================= */
+
+:root {
+    /* Cores */
+    --cor-primaria: #2563EB;
+    --cor-secundaria: #16A34A;
+    --cor-destaque: #F59E0B;
+    --cor-fundo: #F8FAFC;
+    --cor-superficie: #FFFFFF;
+    --cor-texto: #1E293B;
+    --cor-texto-secundario: #475569;
+    --cor-borda: #CBD5E1;
+
+    /* Tipografia */
+    --texto-xl: 2rem;
+    --texto-lg: 1.5rem;
+    --texto-md: 1.25rem;
+    --texto-base: 1rem;
+    --texto-sm: 0.875rem;
+
+    /* Espaçamentos */
+    --espaco-1: 4px;
+    --espaco-2: 8px;
+    --espaco-3: 16px;
+    --espaco-4: 24px;
+    --espaco-5: 32px;
+    --espaco-6: 48px;
+}
+
+
+/* =========================
+   CONFIGURAÇÕES GERAIS
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: var(--texto-base);
+    line-height: 1.6;
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
+}
+
+header,
+main,
+footer {
+    width: min(1200px, 90%);
+    margin: 0 auto;
+}
+
+
+/* =========================
+   GRID PRINCIPAL
+   ========================= */
+
+main {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--espaco-5);
+    padding: var(--espaco-6) 0;
+}
+
+main > section {
+    grid-column: span 12;
+}
+
+
+/* =========================
+   CABEÇALHO
+   ========================= */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--espaco-4) 0;
+}
+
+header h1 {
+    margin: 0;
+    color: var(--cor-primaria);
+    font-size: var(--texto-lg);
+}
+
+
+/* =========================
+   NAVEGAÇÃO
+   ========================= */
+
+nav {
+    position: relative;
+}
+
+.menu-links {
+    display: flex;
+    align-items: center;
+    gap: var(--espaco-4);
+}
+
+nav a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--cor-primaria);
+}
+
+
+/* =========================
+   BOTÃO HAMBÚRGUER
+   ========================= */
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    padding: var(--espaco-1) var(--espaco-2);
+}
+
+
+/* =========================
+   DROPDOWN
+   ========================= */
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    padding: var(--espaco-2);
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--espaco-1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: var(--espaco-2);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+/* =========================
+   TÍTULOS E TEXTOS
+   ========================= */
+
+h1 {
+    font-size: var(--texto-xl);
+}
+
+h2 {
+    font-size: var(--texto-lg);
+    margin-top: 0;
+}
+
+p {
+    color: var(--cor-texto-secundario);
+}
+
+
+/* =========================
+   IMAGENS
+   ========================= */
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--espaco-2);
+}
+
+
+/* =========================
+   LINKS E BOTÕES
+   ========================= */
+
+main a {
+    color: var(--cor-primaria);
+    font-weight: bold;
+}
+
+button {
+    padding: var(--espaco-2) var(--espaco-4);
+    border: none;
+    border-radius: var(--espaco-1);
+    background-color: var(--cor-primaria);
+    color: var(--cor-superficie);
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+button:hover {
+    background-color: #1D4ED8;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+button:focus {
+    outline: 2px solid var(--cor-destaque);
+    outline-offset: 2px;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button:disabled {
+    background-color: #94A3B8;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+}
+
+
+/* =========================
+   FORMULÁRIO
+   ========================= */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-4);
+}
+
+fieldset {
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--espaco-2);
+    padding: var(--espaco-4);
+    background-color: var(--cor-superficie);
+}
+
+legend {
+    padding: 0 var(--espaco-2);
+    font-weight: bold;
+    color: var(--cor-primaria);
+}
+
+label {
+    display: block;
+    margin-bottom: var(--espaco-1);
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    padding: var(--espaco-2);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--espaco-1);
+    font: inherit;
+    transition: border-color 0.2s, outline 0.2s;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid var(--cor-primaria);
+    outline-offset: 1px;
+}
+
+input:valid,
+select:valid {
+    border-color: var(--cor-secundaria);
+}
+
+input:invalid:not(:placeholder-shown),
+select:invalid {
+    border-color: #DC2626;
+}
+
+
+/* =========================
+   RODAPÉ
+   ========================= */
+
+footer {
+    padding: var(--espaco-5) 0;
+    border-top: 1px solid var(--cor-borda);
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+   ========================= */
+
+/* 1. Desktop menor */
+@media (max-width: 1200px) {
+
+    header,
+    main,
+    footer {
+        width: 92%;
+    }
+}
+
+
+/* 2. Tablet horizontal */
+@media (max-width: 992px) {
+
+    main {
+        grid-template-columns: repeat(12, 1fr);
+        gap: var(--espaco-4);
+    }
+
+    header {
+        gap: var(--espaco-3);
+    }
+}
+
+
+/* 3. Tablet */
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--espaco-3);
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu-links {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--espaco-3);
+        margin-top: var(--espaco-3);
+    }
+
+    nav:focus-within .menu-links {
+        display: flex;
+    }
+
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border: none;
+        padding-left: var(--espaco-3);
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    main {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    main > section {
+        grid-column: span 6;
+    }
+}
+
+
+/* 4. Celular grande */
+@media (max-width: 576px) {
+
+    header,
+    main,
+    footer {
+        width: 94%;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav:focus-within .menu-links {
+        display: flex;
+    }
+
+    main {
+        display: block;
+    }
+
+    .menu-links {
+        width: 100%;
+    }
+}
+
+
+/* 5. Celular pequeno */
+@media (max-width: 480px) {
+
+    header,
+    main,
+    footer {
+        width: 92%;
+    }
+
+    h1 {
+        font-size: var(--texto-lg);
+    }
+
+    h2 {
+        font-size: var(--texto-md);
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+/* =========================
+   COMPONENTES DE FEEDBACK
+   ========================= */
+
+/* Badge */
+
+.badge {
+    display: inline-block;
+    padding: var(--espaco-1) var(--espaco-2);
+    background-color: var(--cor-secundaria);
+    color: var(--cor-superficie);
+    border-radius: 999px;
+    font-size: var(--texto-sm);
+    font-weight: bold;
+    margin-bottom: var(--espaco-3);
+}
+
+
+/* Alerta */
+
+.alerta {
+    padding: var(--espaco-3);
+    margin-bottom: var(--espaco-4);
+    background-color: #FEF3C7;
+    border: 1px solid var(--cor-destaque);
+    border-radius: var(--espaco-2);
+    color: var(--cor-texto);
+}
+
+
+/* Modal */
+
+.modal {
+    margin-top: var(--espaco-4);
+    padding: var(--espaco-5);
+    background-color: rgba(30, 41, 59, 0.15);
+    border-radius: var(--espaco-2);
+}
+
+.modal-conteudo {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: var(--espaco-5);
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--espaco-2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-conteudo h2 {
+    color: var(--cor-primaria);
+}
+
+.modal-conteudo a {
+    display: inline-block;
+    margin-top: var(--espaco-3);
+}
