@@ -151,7 +151,8 @@ nav a:hover {
     padding: var(--espaco-2);
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
     display: block;
 }
 
@@ -271,13 +272,13 @@ select:focus {
     outline-offset: 1px;
 }
 
-input:valid,
-select:valid {
+input:user-valid,
+select:user-valid {
     border-color: var(--cor-secundaria);
 }
 
-input:invalid:not(:placeholder-shown),
-select:invalid {
+input:user-invalid,
+select:user-invalid {
     border-color: #DC2626;
 }
 
@@ -346,7 +347,7 @@ footer {
         margin-top: var(--espaco-3);
     }
 
-    nav:focus-within .menu-links {
+    .menu-links.aberto {
         display: flex;
     }
 
@@ -357,7 +358,8 @@ footer {
         padding-left: var(--espaco-3);
     }
 
-    .dropdown:hover .dropdown-menu {
+    .dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
         display: block;
     }
 
@@ -384,7 +386,7 @@ footer {
         width: 100%;
     }
 
-    nav:focus-within .menu-links {
+    .menu-links.aberto {
         display: flex;
     }
 
@@ -476,4 +478,9 @@ footer {
 .modal-conteudo a {
     display: inline-block;
     margin-top: var(--espaco-3);
+}
+
+#mensagem-cadastro {
+    color: var(--cor-secundaria);
+    font-weight: bold;
 }

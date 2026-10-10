@@ -1,36 +1,19 @@
-const paginas = {
-    "index.html": `
-        <h2>Cada vida merece uma segunda chance</h2>
-        <p>O Projeto Aptas atua no resgate, cuidado e encaminhamento responsável de animais em situação de abandono.</p>
-    `,
-
-    "projetos.html": `
-        <h2>Nossos projetos</h2>
-        <p>Conheça os projetos desenvolvidos pelo Projeto Aptas para ajudar animais em situação de abandono e vulnerabilidade.</p>
-    `,
-
-    "cadastro.html": `
-        <h2>Quero participar</h2>
-        <p>Preencha o cadastro para participar das atividades do Projeto Aptas.</p>
-    `
-};
-
+// Navegação real entre páginas (links normais). Aqui só o botão do menu mobile.
 export function configurarNavegacao() {
-    const conteudo = document.querySelector("main");
+    const botao = document.querySelector(".menu-toggle");
+    const menu = document.querySelector(".menu-links");
 
-    if (!conteudo) {
+    if (!botao || !menu) {
         return;
     }
 
-    document.querySelectorAll("nav a").forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault();
+    menu.id = "menu-links";
+    botao.setAttribute("aria-controls", "menu-links");
+    botao.setAttribute("aria-expanded", "false");
 
-            const pagina = this.getAttribute("href");
-
-            if (paginas[pagina]) {
-                conteudo.innerHTML = paginas[pagina];
-            }
-        });
+    botao.addEventListener("click", function () {
+        const aberto = menu.classList.toggle("aberto");
+        botao.setAttribute("aria-expanded", String(aberto));
+        botao.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
     });
 }

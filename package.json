@@ -1,0 +1,26 @@
+{
+  "name": "projeto-ong",
+  "version": "1.0.0",
+  "description": "Projeto web desenvolvido para uma ONG fictícia chamada Projeto Aptas.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lipsthink/Projeto-Aptas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Lipsthink/Projeto-Aptas/issues"
+  },
+  "homepage": "https://github.com/Lipsthink/Projeto-Aptas#readme",
+  "devDependencies": {
+    "vite": "^8.3.2"
+  }
+}

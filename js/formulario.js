@@ -1,4 +1,39 @@
-import { salvarCadastro, carregarCadastro } from "./storage.js";
+import { salvarCadastro, carregarCadastro, limparCadastro } from "./storage.js";
+
+// chave salva -> id do campo no HTML
+const CAMPOS = {
+    nome: "nome",
+    cpf: "cpf",
+    email: "email",
+    dataNascimento: "data-nascimento",
+    telefone: "telefone",
+    cep: "cep",
+    endereco: "endereco",
+    numero: "numero",
+    cidade: "cidade",
+    estado: "estado",
+    participacao: "participacao"
+};
+
+export function cpfValido(cpf) {
+    const d = cpf.replace(/\D/g, "");
+
+    if (d.length !== 11 || /^(\d)\1{10}$/.test(d)) {
+        return false;
+    }
+
+    for (const t of [9, 10]) {
+        let soma = 0;
+        for (let i = 0; i < t; i++) {
+            soma += Number(d[i]) * (t + 1 - i);
+        }
+        if (((soma * 10) % 11) % 10 !== Number(d[t])) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 export function configurarFormulario() {
     const formulario = document.getElementById("formulario-cadastro");
@@ -7,29 +42,37 @@ export function configurarFormulario() {
         return;
     }
 
+    const mensagem = document.getElementById("mensagem-cadastro");
+    const cpf = document.getElementById("cpf");
+
+    function validarCpf() {
+        const completo = cpf.value.length === 14;
+        cpf.setCustomValidity(completo && !cpfValido(cpf.value) ? "CPF inválido." : "");
+    }
+
+    cpf.addEventListener("input", validarCpf);
+
     formulario.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const cadastro = {
-            nome: document.getElementById("nome").value,
-            cpf: document.getElementById("cpf").value,
-            email: document.getElementById("email").value,
-            dataNascimento: document.getElementById("data-nascimento").value,
-            telefone: document.getElementById("telefone").value,
-            cep: document.getElementById("cep").value,
-            endereco: document.getElementById("endereco").value,
-            numero: document.getElementById("numero").value,
-            cidade: document.getElementById("cidade").value,
-            estado: document.getElementById("estado").value,
-            participacao: document.getElementById("participacao").value
-        };
+        const cadastro = {};
+        for (const [chave, id] of Object.entries(CAMPOS)) {
+            cadastro[chave] = document.getElementById(id).value;
+        }
 
-        salvarCadastro(cadastro);
+        const ok = salvarCadastro(cadastro);
+        mensagem.textContent = ok
+            ? "Cadastro salvo com sucesso!"
+            : "Não foi possível salvar o cadastro neste navegador.";
+    });
 
-        alert("Cadastro salvo com sucesso!");
+    formulario.addEventListener("reset", function () {
+        limparCadastro();
+        mensagem.textContent = "";
     });
 
     restaurarCadastro();
+    validarCpf();
 }
 
 function restaurarCadastro() {
@@ -39,15 +82,7 @@ function restaurarCadastro() {
         return;
     }
 
-    document.getElementById("nome").value = cadastro.nome;
-    document.getElementById("cpf").value = cadastro.cpf;
-    document.getElementById("email").value = cadastro.email;
-    document.getElementById("data-nascimento").value = cadastro.dataNascimento;
-    document.getElementById("telefone").value = cadastro.telefone;
-    document.getElementById("cep").value = cadastro.cep;
-    document.getElementById("endereco").value = cadastro.endereco;
-    document.getElementById("numero").value = cadastro.numero;
-    document.getElementById("cidade").value = cadastro.cidade;
-    document.getElementById("estado").value = cadastro.estado;
-    document.getElementById("participacao").value = cadastro.participacao;
+    for (const [chave, id] of Object.entries(CAMPOS)) {
+        document.getElementById(id).value = cadastro[chave] ?? "";
+    }
 }

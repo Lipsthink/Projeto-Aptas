@@ -1,13 +1,27 @@
+const CHAVE = "cadastro";
+
 export function salvarCadastro(cadastro) {
-    localStorage.setItem("cadastro", JSON.stringify(cadastro));
+    try {
+        localStorage.setItem(CHAVE, JSON.stringify(cadastro));
+        return true;
+    } catch (erro) {
+        return false;
+    }
 }
 
 export function carregarCadastro() {
-    const dadosSalvos = localStorage.getItem("cadastro");
-
-    if (!dadosSalvos) {
+    try {
+        const dados = localStorage.getItem(CHAVE);
+        return dados ? JSON.parse(dados) : null;
+    } catch (erro) {
         return null;
     }
+}
 
-    return JSON.parse(dadosSalvos);
+export function limparCadastro() {
+    try {
+        localStorage.removeItem(CHAVE);
+    } catch (erro) {
+        /* sem armazenamento disponível */
+    }
 }

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cadastro - Projeto Aptas</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -42,7 +43,7 @@
                 e demonstrar interesse em apoiar o Projeto Aptas.
             </p>
 
-            <form id="formulario-cadastro" action="#" method="post"></form>
+            <form id="formulario-cadastro" action="#" method="post">
 
                 <fieldset>
                     <legend>Dados pessoais</legend>
@@ -133,7 +134,7 @@
                             type="text"
                             id="endereco"
                             name="endereco"
-                            autocomplete="street-address"
+                            autocomplete="address-line1"
                             required>
                     </p>
 
@@ -166,19 +167,33 @@
                             required>
 
                             <option value="">Selecione</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="PR">Paraná</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="ES">Espírito Santo</option>
-                            <option value="BA">Bahia</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="CE">Ceará</option>
-                            <option value="PA">Pará</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
                             <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
                             <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
 
                         </select>
                     </p>
@@ -211,6 +226,8 @@
                     <button type="reset">Limpar formulário</button>
                 </p>
 
+                <p id="mensagem-cadastro" role="status"></p>
+
             </form>
 
         </section>
@@ -221,50 +238,7 @@
         <p>&copy; 2026 Projeto Aptas. Todos os direitos reservados.</p>
     </footer>
 
-    <script>
-        const cpf = document.getElementById("cpf");
-        const telefone = document.getElementById("telefone");
-        const cep = document.getElementById("cep");
-
-        cpf.addEventListener("input", function () {
-            let valor = cpf.value.replace(/\D/g, "");
-
-            valor = valor.substring(0, 11);
-
-            valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
-            valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
-            valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
-
-            cpf.value = valor;
-        });
-
-        telefone.addEventListener("input", function () {
-            let valor = telefone.value.replace(/\D/g, "");
-
-            valor = valor.substring(0, 11);
-
-            if (valor.length <= 10) {
-                valor = valor.replace(/(\d{2})(\d)/, "($1) $2");
-                valor = valor.replace(/(\d{4})(\d)/, "$1-$2");
-            } else {
-                valor = valor.replace(/(\d{2})(\d)/, "($1) $2");
-                valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
-            }
-
-            telefone.value = valor;
-        });
-
-        cep.addEventListener("input", function () {
-            let valor = cep.value.replace(/\D/g, "");
-
-            valor = valor.substring(0, 8);
-
-            valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
-
-            cep.value = valor;
-        });
-    </script>
-
+    <script type="module" src="../js/script.js"></script>
 </body>
 
 </html>
